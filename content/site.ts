@@ -104,8 +104,11 @@ export const socials: SocialLink[] = [
     href: "mailto:sanjul1094@gmail.com",
     handle: "sanjul1094@gmail.com",
   },
-  // TODO: add your GitHub handle, or remove this entry
-  { label: "GitHub", href: "https://github.com/", handle: "@yourhandle" },
+  {
+    label: "GitHub",
+    href: "https://github.com/Sanjul-Sharma",
+    handle: "Sanjul-Sharma",
+  },
 ];
 
 // ---------------------------------------------------------------------------
