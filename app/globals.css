@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  /* Dark (Nocturne) — the default */
   --background: #0a0c11;
   --surface: #12151d;
   --surface-2: #171b25;
@@ -12,6 +13,37 @@
   --accent-2: #8affc1; /* jade */
   --accent-hover: #1f9de8;
   --accent-soft: rgba(47, 177, 255, 0.14);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --card-hover-border: rgba(255, 255, 255, 0.16);
+  --tag-bg: rgba(255, 255, 255, 0.02);
+  --sb-thumb: #2b3140;
+  --sb-thumb-hover: #3a4152;
+  --grain-opacity: 0.05;
+  color-scheme: dark;
+}
+
+/* Light (Daybreak) — same azure/jade identity on a bright ground */
+:root[data-theme="light"] {
+  --background: #f6f8fc;
+  --surface: #ffffff;
+  --surface-2: #eef2f8;
+  --border: #e2e7f0;
+  --foreground: #111722;
+  --muted: #55617a;
+  --muted-2: #8a93a6;
+  --accent: #0b84d6; /* azure, readable on white */
+  --accent-2: #0e9f6e; /* jade/emerald */
+  --accent-hover: #0a72bb;
+  --accent-soft: rgba(11, 132, 214, 0.1);
+  --card-bg: #ffffff;
+  --card-border: #e5e9f1;
+  --card-hover-border: #cdd5e3;
+  --tag-bg: #f1f4f9;
+  --sb-thumb: #cbd3e0;
+  --sb-thumb-hover: #b3bdcd;
+  --grain-opacity: 0.03;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -43,6 +75,9 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   position: relative;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* Ambient: slow-drifting aurora wash — fixed behind everything */
@@ -59,6 +94,14 @@ body::before {
   animation: aurora 22s ease-in-out infinite;
 }
 
+/* Softer, cooler aurora on the light theme */
+:root[data-theme="light"] body::before {
+  background:
+    radial-gradient(34% 34% at 78% 8%, rgba(11, 132, 214, 0.1), transparent 60%),
+    radial-gradient(30% 32% at 12% 30%, rgba(14, 159, 110, 0.08), transparent 62%),
+    radial-gradient(36% 38% at 60% 96%, rgba(11, 132, 214, 0.07), transparent 62%);
+}
+
 /* Ambient: fine film grain */
 body::after {
   content: "";
@@ -66,7 +109,7 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: var(--grain-opacity);
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -88,12 +131,12 @@ body::after {
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2b3140;
+  background: var(--sb-thumb);
   border-radius: 999px;
   border: 2px solid var(--background);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a4152;
+  background: var(--sb-thumb-hover);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -144,24 +187,25 @@ body::after {
 
 /* Glass card */
 .card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 0.9rem;
   backdrop-filter: blur(6px);
   transition:
     border-color 0.28s ease,
     box-shadow 0.28s ease,
+    background-color 0.28s ease,
     transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.16);
+  border-color: var(--card-hover-border);
   transform: translateY(-4px);
-  box-shadow: 0 20px 44px -22px color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 20px 44px -22px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 /* Featured project card — distinguished by accent border, not size */
 .card-featured {
-  border-color: color-mix(in srgb, var(--accent) 32%, rgba(255, 255, 255, 0.07));
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--card-border));
 }
 
 /* Tag / skill pill */
@@ -169,7 +213,7 @@ body::after {
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--tag-bg);
   color: var(--muted);
   border-radius: 0.5rem;
   padding: 0.15rem 0.6rem;

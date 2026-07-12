@@ -3,9 +3,28 @@
 import { useEffect, useState } from "react";
 import { navLinks, person } from "@/content/site";
 
+type Theme = "dark" | "light";
+
+function SunIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </svg>
+  );
+}
+function MoonIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+    </svg>
+  );
+}
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -13,6 +32,33 @@ export default function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const t = (document.documentElement.getAttribute("data-theme") as Theme) || "dark";
+    setTheme(t);
+  }, []);
+
+  const toggleTheme = () => {
+    const next: Theme = theme === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      /* ignore */
+    }
+    setTheme(next);
+  };
+
+  const themeButton = (extra = "") => (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+      className={`flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-accent hover:text-accent ${extra}`}
+    >
+      {theme === "light" ? <MoonIcon /> : <SunIcon />}
+    </button>
+  );
 
   return (
     <header
@@ -30,52 +76,60 @@ export default function Nav() {
           {person.name}
         </a>
 
-        <ul className="hidden items-center gap-8 sm:flex">
-          <li>
-            <a
-              href={person.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted transition-colors hover:text-foreground"
-            >
-              Resume
-            </a>
-          </li>
-          {navLinks.map((link) => (
-            <li key={link.href}>
+        {/* Desktop links + toggle */}
+        <div className="hidden items-center gap-7 sm:flex">
+          <ul className="flex items-center gap-8">
+            <li>
               <a
-                href={link.href}
+                href={person.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-muted transition-colors hover:text-foreground"
               >
-                {link.label}
+                Resume
               </a>
             </li>
-          ))}
-        </ul>
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="text-sm text-muted transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          {themeButton()}
+        </div>
 
-        <button
-          aria-label="Toggle menu"
-          className="sm:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <div className="space-y-1.5">
-            <span
-              className={`block h-0.5 w-6 bg-foreground transition-transform ${
-                open ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-6 bg-foreground transition-opacity ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-6 bg-foreground transition-transform ${
-                open ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
-          </div>
-        </button>
+        {/* Mobile: toggle + hamburger */}
+        <div className="flex items-center gap-1 sm:hidden">
+          {themeButton()}
+          <button
+            aria-label="Toggle menu"
+            className="flex h-9 w-9 items-center justify-center"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <div className="space-y-1.5">
+              <span
+                className={`block h-0.5 w-6 bg-foreground transition-transform ${
+                  open ? "translate-y-2 rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`block h-0.5 w-6 bg-foreground transition-opacity ${
+                  open ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`block h-0.5 w-6 bg-foreground transition-transform ${
+                  open ? "-translate-y-2 -rotate-45" : ""
+                }`}
+              />
+            </div>
+          </button>
+        </div>
       </nav>
 
       {open && (
