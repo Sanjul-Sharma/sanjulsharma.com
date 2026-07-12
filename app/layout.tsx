@@ -21,12 +21,20 @@ const spaceGrotesk = Space_Grotesk({
 import { person } from "@/content/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sanjul-sharma.com"),
   title: `${person.name} — ${person.role}`,
   description: person.tagline,
   openGraph: {
     title: `${person.name} — ${person.role}`,
     description: person.tagline,
+    url: "https://sanjul-sharma.com",
+    siteName: person.name,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${person.name} — ${person.role}`,
+    description: person.tagline,
   },
 };
 
