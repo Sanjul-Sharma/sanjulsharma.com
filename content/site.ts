@@ -201,12 +201,18 @@ export const work: Project[] = [
 export const sideProjects: Project[] = [
   {
     name: "Fantasy Basketball League Bot",
-    tagline: "A Discord bot that runs an entire dynasty fantasy basketball league",
+    tagline:
+      "A Discord bot that runs an entire 30-team dynasty basketball league end to end",
     description:
-      "A Discord bot that runs a whole fantasy basketball league — free agency, roasts, power rankings, salary-cap enforcement, and live countdown timers. Handles the complex league rules automatically so the commissioner doesn't have to.",
-    tech: ["Python", "Discord API", "Automation"],
-    repo: "https://github.com/",
-    url: "",
+      "An ~18,000-line Discord bot that automates every transaction for the 30-team dynasty fantasy league I commission: multi-team trades with board voting, silent restricted-free-agent bidding with cap-aware resolution, batch free-agent auctions, the rookie draft, contract re-signs, and future-pick tracking — all enforced against a live salary cap. It keeps a Google Sheet as the source of truth, syncs rosters to the league platform automatically, and uses AI to generate power rankings, breaking-news trade headlines, and league digests. Runs 24/7 with push-to-deploy.",
+    tech: [
+      "Python",
+      "discord.py",
+      "SQLite",
+      "Google Sheets API",
+      "AI Integration",
+      "Railway",
+    ],
     featured: true,
   },
   {
