@@ -210,12 +210,18 @@ export const sideProjects: Project[] = [
     featured: true,
   },
   {
-    name: "Automated Budget",
-    tagline: "A budget sheet wired up with automation",
-    // TODO: add the real details from your other machine (what it does, the automation setup, tech)
+    name: "Privacy-First Budget Automation",
+    tagline:
+      "Budget automation that never hands my financial data to third-party apps",
     description:
-      "A personal budgeting spreadsheet with an automation layer that keeps it up to date without manual entry. Details coming soon.",
-    tech: ["Automation", "Spreadsheets"],
+      "I wanted automated budgeting without giving a third-party app access to my accounts — so I built my own. A Google Apps Script backend pulls transactions straight from my email, an AI layer auto-categorizes them, and a custom iOS home-screen widget (built with Scriptable) surfaces spending, savings goals, and a live “pace” view that flags whether I'm running hot or on track for the month — all without my data ever leaving my own accounts.",
+    tech: [
+      "Google Apps Script",
+      "AI Integration",
+      "iOS / Scriptable",
+      "JavaScript",
+      "Automation",
+    ],
     featured: false,
   },
 ];
