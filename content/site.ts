@@ -173,7 +173,15 @@ export const work: Project[] = [
       "Gave senior leadership its first real view of data-platform demand vs. delivery",
     description:
       "Senior leadership had no line of sight into data-platform demand versus what had actually been delivered — so I built it. The report reconciles hundreds of planned annual data requirements against real intake submissions across every business vertical and domain, on a locked, defensible methodology that holds up under executive scrutiny. A scripted build chain regenerates the full leadership deck on every data refresh — turning a manual, ad-hoc scramble into a repeatable, self-serve deliverable.",
-    tech: ["Executive Reporting", "Data Reconciliation", "Automation", "Node.js"],
+    tech: [
+      "Executive Reporting",
+      "Data Reconciliation",
+      "AI Integration",
+      "Automation",
+      "Python",
+      "SQL",
+      "Excel",
+    ],
     featured: true,
   },
   {
