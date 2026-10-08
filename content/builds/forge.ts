@@ -22,7 +22,7 @@ export const forge: Entry = {
     "Magic-link auth, row-level security on every table, schema migrations on push",
   ],
   stack: ["Vanilla JS PWA", "Vercel Functions", "Claude API", "Supabase", "GitHub Actions"],
-  links: {},
+  links: { live: "https://forge.sanjul-sharma.com" },
   media: { cover: "", screenshots: [] },
   featured: true,
 };

@@ -21,7 +21,7 @@ export const tally: Entry = {
     "Magic-link and Google sign-in, row-level security, live isolation tests",
   ],
   stack: ["Vanilla JS PWA", "Vercel Functions + Cron", "Supabase", "Web Push (VAPID)"],
-  links: { live: "https://tally-perks.vercel.app" },
+  links: { live: "https://tally.sanjul-sharma.com" },
   media: { cover: "", screenshots: [] },
   featured: true,
 };
