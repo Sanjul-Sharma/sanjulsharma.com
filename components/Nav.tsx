@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { navLinks, person } from "@/content/site";
 
 type Theme = "dark" | "light";
@@ -69,12 +70,12 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="text-base font-semibold tracking-tight text-foreground"
         >
           {person.name}
-        </a>
+        </Link>
 
         {/* Desktop links + toggle */}
         <div className="hidden items-center gap-7 sm:flex">

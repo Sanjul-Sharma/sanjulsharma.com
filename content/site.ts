@@ -51,13 +51,13 @@ export type SkillGroup = {
 export const person = {
   name: "Sanjul Sharma",
   // Short label shown above your name in the hero
-  role: "Senior Platform Product Manager",
+  role: "Senior Data Product Manager",
   // One or two punchy sentences about what you do
   tagline:
     "I build platform products for internal developer, data science, and analytics teams — turning shared ML and data infrastructure into leverage across a $2B+ portfolio.",
   // A slightly longer intro used in the About section
   about: [
-    "I'm a Senior Platform Product Manager at PepsiCo, where I own the strategy and roadmap for the ML and data infrastructure that internal developer, data science, and analytics teams rely on. My customers aren't external users — they're the people inside the company turning data into consumer insights across a $2B+ portfolio in every global market — and my job is to make that shared infrastructure feel less like plumbing and more like leverage.",
+    "I'm a Senior Data Product Manager at PepsiCo, where I own the strategy and roadmap for the ML and data infrastructure that internal developer, data science, and analytics teams rely on. My customers aren't external users — they're the people inside the company turning data into consumer insights across a $2B+ portfolio in every global market — and my job is to make that shared infrastructure feel less like plumbing and more like leverage.",
     "I didn't start in product. I began as a cloud engineer, standing up Kubernetes clusters and running enterprise cloud migrations end to end. That background shapes how I work: I'm comfortable in SQL and Python, I can go deep with engineers on architecture and trade-offs, and I translate between technical reality and business priorities without losing either. It's also why I gravitate toward platform work — the leverage of building something once that a hundred teams get to build on top of.",
     "Over the last few years I've taken an ML forecasting platform from MVP to production adoption across 18+ business segments, defined the end-to-end lifecycle for how data products get built, governed, and retired, and secured multi-million-dollar funding by defending roadmap and ROI directly to senior leadership. Before PepsiCo, I built T-Mobile's first SMB sales platform from zero to $5M+ in month-one transaction volume. The through-line across all of it: taking ambiguous, ad-hoc problems and turning them into repeatable systems people actually trust.",
     "I care a lot about the unglamorous parts of product — clear intake processes, sane governance, documentation people actually read — because that's usually what separates a platform that scales from one that quietly collapses under its own success. I try to lead with clarity: a good roadmap should be legible to an engineer, a data scientist, and an executive at the same time.",
@@ -84,10 +84,11 @@ export const currently: string[] = [
 ];
 
 export const navLinks: NavLink[] = [
-  { label: "Work", href: "#work" },
-  { label: "Hobby Builds", href: "#projects" },
-  { label: "Freetime", href: "#freetime" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Builds", href: "/builds" },
+  { label: "Games", href: "/games" },
+  { label: "Freetime", href: "/#freetime" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -122,7 +123,7 @@ export const experience: Experience[] = [
     period: "2023 — Present",
     location: "Remote, USA",
     summary:
-      "Own ML and data platform strategy for internal developer, data science, and analytics teams. Promoted from Data Product Associate Manager (2023–2024).",
+      "Own ML and data platform strategy for internal developer, data science, and analytics teams. Joined as Data Product Manager in January 2023; promoted to Senior in March 2025.",
     highlights: [
       "Built PepsiCo's ML forecasting platform from MVP to production — adopted across 18+ business segments, hitting 93% forecast accuracy and growing adoption 50% from MVP.",
       "Own product strategy and roadmap for the global data lake powering consumer insights across a $2B+ portfolio in all global markets.",
@@ -147,7 +148,7 @@ export const experience: Experience[] = [
     tech: ["0-to-1 Product", "Roadmapping", "Customer Discovery"],
   },
   {
-    role: "Cloud Engineer",
+    role: "Software Engineer, Cloud",
     company: "TCS",
     companyUrl: "https://www.tcs.com",
     period: "2021 — 2022",
@@ -196,43 +197,6 @@ export const work: Project[] = [
 ];
 
 // ---------------------------------------------------------------------------
-//  SIDE PROJECTS — personal builds & hobby projects
-// ---------------------------------------------------------------------------
-export const sideProjects: Project[] = [
-  {
-    name: "Fantasy Basketball League Bot",
-    tagline:
-      "A Discord bot that runs an entire 30-team dynasty basketball league end to end",
-    description:
-      "An ~18,000-line Discord bot that automates every transaction for the 30-team dynasty fantasy league I commission: multi-team trades with board voting, silent restricted-free-agent bidding with cap-aware resolution, batch free-agent auctions, the rookie draft, contract re-signs, and future-pick tracking — all enforced against a live salary cap. It keeps a Google Sheet as the source of truth, syncs rosters to the league platform automatically, and uses AI to generate power rankings, breaking-news trade headlines, and league digests. Runs 24/7 with push-to-deploy.",
-    tech: [
-      "Python",
-      "discord.py",
-      "SQLite",
-      "Google Sheets API",
-      "AI Integration",
-      "Railway",
-    ],
-    featured: true,
-  },
-  {
-    name: "Privacy-First Budget Automation",
-    tagline:
-      "Budget automation that never hands my financial data to third-party apps",
-    description:
-      "I wanted automated budgeting without giving a third-party app access to my accounts — so I built my own. A Google Apps Script backend pulls transactions straight from my email, an AI layer auto-categorizes them, and a custom iOS home-screen widget (built with Scriptable) surfaces spending, savings goals, and a live “pace” view that flags whether I'm running hot or on track for the month — all without my data ever leaving my own accounts.",
-    tech: [
-      "Google Apps Script",
-      "AI Integration",
-      "iOS / Scriptable",
-      "JavaScript",
-      "Automation",
-    ],
-    featured: false,
-  },
-];
-
-// ---------------------------------------------------------------------------
 //  FREETIME — photography albums (horizontal scroller)
 //  Cover images: drop files in /public/photography and set `cover` to the path.
 //  Leave `cover` empty to show a tasteful gradient placeholder.
@@ -264,6 +228,11 @@ export const achievements: Achievement[] = [
     title: "Product Manager Certification (PMC)",
     detail: "Formal product management certification.",
     year: "2023",
+  },
+  {
+    title: "Google Cloud Associate Cloud Engineer",
+    detail: "Google Cloud certification in deploying and operating workloads on GCP.",
+    year: "2021",
   },
   {
     title: "B.S. Computer Science",
