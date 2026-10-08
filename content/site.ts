@@ -57,7 +57,7 @@ export const person = {
     "I build platform products for internal developer, data science, and analytics teams — turning shared ML and data infrastructure into leverage across a $2B+ portfolio.",
   // One line under the name. What you are, in one breath.
   identity:
-    "I run product for the ML and data platforms inside PepsiCo, build software that runs itself, and make games as Splitz Interactive.",
+    "Senior Data Product Manager at PepsiCo. Side-project builder. One-person game studio.",
   // Two short paragraphs on the cover. First person, under 120 words.
   intro: [
     "By day I own the forecasting, feature and governance infrastructure that PepsiCo's data scientists and analysts build on. I started as a cloud engineer, which is why I still read the code and argue about the architecture.",

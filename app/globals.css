@@ -214,10 +214,80 @@ body {
   color: var(--muted-2);
 }
 
-/* Rows enter one after another on load. */
-.ledger-row {
-  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(var(--i, 0) * 55ms + 120ms);
+/* Rows enter one after another once the ledger scrolls into view. */
+.ledger .ledger-row {
+  opacity: 0;
+}
+.ledger.in-view .ledger-row {
+  animation: fade-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+.row-arrow {
+  display: inline-block;
+  margin-left: 0.35rem;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ledger-row:hover .row-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+/* Live dots breathe. */
+.dot.live {
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+/* Cover lines enter in order on load. */
+.enter {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+}
+
+/* Rotating word in the headline. */
+.rotator {
+  display: inline-block;
+  position: relative;
+  color: var(--accent);
+  min-width: 4.6ch;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: inherit;
+}
+.rotator-word {
+  display: inline-block;
+  animation: word-in 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.rotator-word.leaving {
+  animation: word-out 0.26s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes word-out {
+  to {
+    opacity: 0;
+    transform: translateY(-0.6em);
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -325,8 +395,13 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ledger-row {
+  .ledger .ledger-row,
+  .enter,
+  .rotator-word,
+  .rotator-word.leaving,
+  .dot.live {
     animation: none;
+    opacity: 1;
   }
   .reveal {
     opacity: 1;

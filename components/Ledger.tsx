@@ -1,4 +1,5 @@
 import Link from "next/link";
+import InView from "./InView";
 import { kindLabel, statusLabel, type Entry } from "@/content/entries";
 
 const order: Record<Entry["status"], number> = {
@@ -33,7 +34,7 @@ export default function Ledger({
     "grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_4.5rem_7.5rem]";
 
   return (
-    <div className="ledger">
+    <InView className="ledger">
       <div className={`ledger-head eyebrow ${cols}`}>
         <span>{heading}</span>
         <span className="hidden sm:block">Heartbeat</span>
@@ -70,9 +71,10 @@ export default function Ledger({
           >
             <span className={`dot ${e.status}`} aria-hidden />
             {statusLabel[e.status]}
+            <span className="row-arrow" aria-hidden>↗</span>
           </span>
         </Link>
       ))}
-    </div>
+    </InView>
   );
 }

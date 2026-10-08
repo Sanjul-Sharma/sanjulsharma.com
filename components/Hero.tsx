@@ -1,8 +1,14 @@
 import Link from "next/link";
+import RotatingWord from "./RotatingWord";
 import { person, socials } from "@/content/site";
 
-/** Cover: who this is, in three screens' worth of reading or less. */
+const things = ["bots", "platforms", "pipelines", "games", "trackers", "tools"];
+
+/** Cover: who this is and what they make, with a word that keeps moving. */
 export default function Hero() {
+  let i = 0;
+  const enter = () => ({ "--i": i++ }) as React.CSSProperties;
+
   return (
     <section
       id="top"
@@ -10,36 +16,63 @@ export default function Hero() {
     >
       <div className="flex items-start justify-between gap-8">
         <div className="min-w-0">
-          <p className="eyebrow">
+          <p
+            className="font-display enter text-2xl font-bold tracking-tight text-foreground"
+            style={enter()}
+          >
+            {person.name}
+          </p>
+          <p className="eyebrow enter mt-2" style={enter()}>
             {person.role} · PepsiCo · {person.location}
           </p>
-          <h1 className="font-display mt-4 text-[3.4rem] font-extrabold leading-[0.95] tracking-[-0.035em] text-foreground sm:text-[6.5rem]">
-            {person.name}
-          </h1>
         </div>
         {person.avatarUrl && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={person.avatarUrl}
             alt={person.name}
-            className="mt-2 hidden h-24 w-24 flex-shrink-0 rounded-full border border-border object-cover sm:block sm:h-28 sm:w-28"
+            className="enter hidden h-20 w-20 flex-shrink-0 rounded-full border border-border object-cover sm:block"
+            style={enter()}
           />
         )}
       </div>
 
-      <p className="font-display mt-8 max-w-2xl text-xl font-semibold leading-snug tracking-[-0.01em] text-foreground sm:text-[1.7rem]">
+      <h1
+        className="font-display enter mt-10 max-w-3xl text-[2.9rem] font-extrabold leading-[1.0] tracking-[-0.03em] text-foreground sm:text-[5.2rem]"
+        style={enter()}
+      >
+        I build <RotatingWord words={things} />
+        <br />
+        that keep running
+        <br />
+        after I log off.
+      </h1>
+
+      <p
+        className="font-display enter mt-8 max-w-2xl text-lg font-semibold leading-snug text-foreground sm:text-xl"
+        style={enter()}
+      >
         {person.identity}
       </p>
 
-      <div className="mt-7 max-w-xl space-y-4 text-base leading-relaxed text-muted">
+      <div
+        className="enter mt-6 max-w-xl space-y-4 text-base leading-relaxed text-muted"
+        style={enter()}
+      >
         {person.intro.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
       </div>
 
-      <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-        <Link href="/#work" className="btn">
-          See the work
+      <div
+        className="enter mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm"
+        style={enter()}
+      >
+        <Link href="/#running" className="btn">
+          What is running now
+        </Link>
+        <Link href="/#work" className="link">
+          Work
         </Link>
         <Link href="/builds" className="link">
           Builds
