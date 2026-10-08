@@ -55,6 +55,14 @@ export const person = {
   // One or two punchy sentences about what you do
   tagline:
     "I build platform products for internal developer, data science, and analytics teams — turning shared ML and data infrastructure into leverage across a $2B+ portfolio.",
+  // One line under the name. What you are, in one breath.
+  identity:
+    "I run product for the ML and data platforms inside PepsiCo, build software that runs itself, and make games as Splitz Interactive.",
+  // Two short paragraphs on the cover. First person, under 120 words.
+  intro: [
+    "By day I own the forecasting, feature and governance infrastructure that PepsiCo's data scientists and analysts build on. I started as a cloud engineer, which is why I still read the code and argue about the architecture.",
+    "By night I build things that run on their own: a Discord bot that commissions a 30-team dynasty basketball league, a credit-card perk tracker, a workout coach, a daily job-search digest. And I make games on Roblox under my own one-person studio, with one title live and one in development.",
+  ],
   // A slightly longer intro used in the About section
   about: [
     "I'm a Senior Data Product Manager at PepsiCo, where I own the strategy and roadmap for the ML and data infrastructure that internal developer, data science, and analytics teams rely on. My customers aren't external users — they're the people inside the company turning data into consumer insights across a $2B+ portfolio in every global market — and my job is to make that shared infrastructure feel less like plumbing and more like leverage.",
@@ -75,6 +83,7 @@ export const person = {
 //  NAV
 // ---------------------------------------------------------------------------
 export const navLinks: NavLink[] = [
+  { label: "Running", href: "/#running" },
   { label: "Work", href: "/#work" },
   { label: "Builds", href: "/builds" },
   { label: "Games", href: "/games" },
