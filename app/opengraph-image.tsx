@@ -1,13 +1,21 @@
 import { ImageResponse } from "next/og";
 import { person } from "@/content/site";
+import { builds, games } from "@/content/entries";
 
 export const alt = `${person.name} — ${person.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Social link-preview card (LinkedIn, X, etc.) in the site's Nocturne look.
+const PAPER = "#f4f4f1";
+const INK = "#15171c";
+const MUTED = "#585d66";
+const MUTED2 = "#8a8f98";
+const RULE = "#d6d7d1";
+const LIVE = "#0b7a55";
+const DEV = "#b26b0a";
+
+// Social link-preview card: the ledger, on paper.
 export default async function Image() {
-  // Try to load the site's display face; degrade gracefully if unavailable.
   const fonts: {
     name: string;
     data: ArrayBuffer;
@@ -15,21 +23,25 @@ export default async function Image() {
     style: "normal";
   }[] = [];
   try {
-    const [bold, medium] = await Promise.all([
+    const [bold, mono] = await Promise.all([
       fetch(
-        "https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5/files/space-grotesk-latin-700-normal.woff",
+        "https://cdn.jsdelivr.net/npm/@fontsource/bricolage-grotesque@5/files/bricolage-grotesque-latin-700-normal.woff",
       ).then((r) => r.arrayBuffer()),
       fetch(
-        "https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5/files/space-grotesk-latin-500-normal.woff",
+        "https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5/files/ibm-plex-mono-latin-500-normal.woff",
       ).then((r) => r.arrayBuffer()),
     ]);
-    fonts.push({ name: "Space Grotesk", data: bold, weight: 700, style: "normal" });
-    fonts.push({ name: "Space Grotesk", data: medium, weight: 500, style: "normal" });
+    fonts.push({ name: "Bricolage", data: bold, weight: 700, style: "normal" });
+    fonts.push({ name: "Plex", data: mono, weight: 500, style: "normal" });
   } catch {
     // fall back to the default font
   }
+  const display = fonts.length ? "Bricolage" : "sans-serif";
+  const mono = fonts.length ? "Plex" : "monospace";
 
-  const family = fonts.length ? "Space Grotesk" : "sans-serif";
+  const rows = [...builds, ...games]
+    .filter((e) => e.status === "live" || e.status === "in-dev")
+    .slice(0, 5);
 
   return new ImageResponse(
     (
@@ -39,87 +51,90 @@ export default async function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "76px 84px",
-          backgroundColor: "#0a0c11",
-          backgroundImage:
-            "linear-gradient(135deg, rgba(47,177,255,0.22), rgba(47,177,255,0) 44%), linear-gradient(315deg, rgba(138,255,193,0.13), rgba(138,255,193,0) 46%)",
-          color: "#eaedf4",
-          fontFamily: family,
+          padding: "64px 72px",
+          backgroundColor: PAPER,
+          color: INK,
+          fontFamily: display,
         }}
       >
-        {/* eyebrow */}
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div
-            style={{
-              width: 14,
-              height: 14,
-              borderRadius: 999,
-              backgroundColor: "#8affc1",
-            }}
-          />
-          <div
-            style={{
-              fontSize: 24,
-              fontWeight: 500,
-              letterSpacing: 5,
-              color: "#2fb1ff",
-            }}
-          >
-            SENIOR PLATFORM PRODUCT MANAGER
-          </div>
+        <div
+          style={{
+            fontFamily: mono,
+            fontSize: 20,
+            letterSpacing: 3,
+            color: MUTED2,
+            textTransform: "uppercase",
+          }}
+        >
+          {`${person.name} · ${person.role}`}
+        </div>
+        <div
+          style={{
+            fontSize: 60,
+            fontWeight: 700,
+            lineHeight: 1.05,
+            letterSpacing: -2,
+            marginTop: 18,
+            maxWidth: 1000,
+          }}
+        >
+          Side projects that run themselves.
         </div>
 
-        {/* name + subline */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              width: 132,
-              height: 6,
-              borderRadius: 999,
-              marginBottom: 30,
-              backgroundImage: "linear-gradient(90deg, #2fb1ff, #8affc1)",
-            }}
-          />
-          <div
-            style={{
-              fontSize: 118,
-              fontWeight: 700,
-              lineHeight: 1.02,
-              letterSpacing: -4,
-            }}
-          >
-            {person.name}
-          </div>
-          <div style={{ fontSize: 33, fontWeight: 500, color: "#a2aabd", marginTop: 22 }}>
-            ML &amp; data platforms · PepsiCo · California
-          </div>
-        </div>
-
-        {/* footer */}
         <div
           style={{
             display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            flexDirection: "column",
+            marginTop: 40,
+            borderTop: `2px solid ${INK}`,
+            fontFamily: mono,
+            fontSize: 22,
           }}
         >
-          <div style={{ fontSize: 27, color: "#cfd6e4" }}>sanjul-sharma.com</div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: 20,
-              fontWeight: 500,
-              letterSpacing: 2,
-              color: "#8affc1",
-              border: "1px solid #2b3350",
-              borderRadius: 999,
-              padding: "8px 18px",
-            }}
-          >
-            PORTFOLIO
-          </div>
+          {rows.map((e) => (
+            <div
+              key={e.slug}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "11px 0",
+                borderBottom: `1px solid ${RULE}`,
+              }}
+            >
+              <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
+                <div
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: 999,
+                    backgroundColor: e.status === "live" ? LIVE : DEV,
+                  }}
+                />
+                <div style={{ fontFamily: display, fontWeight: 700, fontSize: 24 }}>
+                  {e.name}
+                </div>
+                <div style={{ color: MUTED }}>{e.running ?? ""}</div>
+              </div>
+              <div style={{ color: e.status === "live" ? LIVE : DEV }}>
+                {e.status === "live" ? "Live" : "In development"}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: "auto",
+            fontFamily: mono,
+            fontSize: 20,
+            color: MUTED2,
+          }}
+        >
+          <div>sanjul-sharma.com</div>
+          <div>Games as Splitz Interactive</div>
         </div>
       </div>
     ),

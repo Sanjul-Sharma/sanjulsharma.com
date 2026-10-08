@@ -25,48 +25,48 @@ export default function EntryDetail({
     .filter((d): d is LinkDef & { href: string } => Boolean(d.href));
 
   return (
-    <article className="mx-auto w-full max-w-4xl px-6 pb-20 pt-28 sm:pt-32">
-      <Link
-        href={backHref}
-        className="text-sm text-muted transition-colors hover:text-accent"
-      >
+    <article className="mx-auto w-full max-w-4xl px-6 pb-24 pt-28 sm:pt-32">
+      <Link href={backHref} className="mono text-xs text-muted-2 hover:text-accent">
         ← {backLabel}
       </Link>
 
-      <header className="mt-6">
-        <p className="eyebrow mb-2">
-          {kindLabel[entry.kind]} · {statusLabel[entry.status]} · {entry.year}
+      <header className="mt-8 border-b border-foreground pb-8">
+        <p className="eyebrow">
+          <span className={`status-${entry.status}`}>
+            <span className={`dot ${entry.status}`} aria-hidden />
+            {statusLabel[entry.status]}
+          </span>
+          <span className="mx-2">·</span>
+          {kindLabel[entry.kind]}
+          <span className="mx-2">·</span>
+          {entry.year}
+          {entry.running && (
+            <>
+              <span className="mx-2">·</span>
+              {entry.running}
+            </>
+          )}
         </p>
-        <h1 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
+        <h1 className="font-display mt-4 text-4xl font-bold leading-[1.02] tracking-[-0.025em] text-foreground sm:text-6xl">
           {entry.name}
         </h1>
-        <p className="mt-3 max-w-2xl text-lg text-muted">{entry.tagline}</p>
+        <p className="mt-4 max-w-2xl text-lg leading-snug text-muted">
+          {entry.tagline}
+        </p>
 
         {links.length > 0 && (
           <div className="mt-7 flex flex-wrap gap-3">
-            {links.map((l) =>
-              l.primary ? (
-                <a
-                  key={l.key}
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="int rounded-xl bg-gradient-to-r from-accent to-accent-hover px-5 py-2.5 text-sm font-semibold text-[#0a0b10] transition-shadow hover:shadow-[0_14px_34px_-10px_var(--color-accent)]"
-                >
-                  {l.label} ↗
-                </a>
-              ) : (
-                <a
-                  key={l.key}
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="int rounded-xl border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
-                >
-                  {l.label} ↗
-                </a>
-              ),
-            )}
+            {links.map((l) => (
+              <a
+                key={l.key}
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={l.primary ? "btn" : "btn btn-ghost"}
+              >
+                {l.label} <span aria-hidden>↗</span>
+              </a>
+            ))}
           </div>
         )}
       </header>
@@ -76,19 +76,19 @@ export default function EntryDetail({
         <img
           src={entry.media.cover}
           alt={`${entry.name} cover`}
-          className="mt-10 w-full rounded-2xl border border-card-border"
+          className="mt-10 w-full rounded-lg border border-border"
         />
       )}
 
-      <div className="mt-12 grid gap-12 md:grid-cols-[1fr_260px]">
+      <div className="mt-12 grid gap-12 md:grid-cols-[minmax(0,1fr)_240px]">
         <div>
           <h2 className="eyebrow mb-3">Why it exists</h2>
-          <p className="text-base leading-relaxed text-foreground">
+          <p className="text-lg leading-relaxed text-foreground">
             {entry.problem}
           </p>
 
-          <h2 className="eyebrow mb-3 mt-10">What it does</h2>
-          <div className="space-y-4 text-base leading-relaxed text-muted">
+          <h2 className="eyebrow mb-3 mt-12">What it does</h2>
+          <div className="space-y-5 text-base leading-relaxed text-muted">
             {entry.body.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
@@ -102,21 +102,20 @@ export default function EntryDetail({
                   key={src}
                   src={src}
                   alt=""
-                  className="w-full rounded-xl border border-card-border"
+                  className="w-full rounded-lg border border-border"
                 />
               ))}
             </div>
           )}
         </div>
 
-        <aside className="space-y-8">
+        <aside className="space-y-10 md:border-l md:border-border md:pl-8">
           <div>
             <h2 className="eyebrow mb-3">Highlights</h2>
-            <ul className="space-y-2 text-sm leading-relaxed text-muted">
+            <ul className="space-y-3 text-sm leading-relaxed text-muted">
               {entry.highlights.map((h) => (
-                <li key={h} className="flex gap-2">
-                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  <span>{h}</span>
+                <li key={h} className="border-b border-border pb-3 last:border-0">
+                  {h}
                 </li>
               ))}
             </ul>

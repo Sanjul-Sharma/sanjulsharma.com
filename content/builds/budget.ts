@@ -7,6 +7,7 @@ export const budget: Entry = {
   status: "private",
   year: "2025 – 2026",
   tagline: "Budget automation that never hands financial data to a third-party app",
+  running: "hourly trigger, 2 accounts",
   problem:
     "I wanted automated budgeting without giving a third-party app read access to my bank accounts. The transaction alerts my banks already email me contain everything a budget needs.",
   body: [

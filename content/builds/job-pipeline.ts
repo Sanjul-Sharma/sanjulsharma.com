@@ -7,6 +7,7 @@ export const jobPipeline: Entry = {
   status: "live",
   year: "2026",
   tagline: "A daily scored shortlist of roles, from search to tracker sheet to inbox",
+  running: "one digest a day",
   problem:
     "Job boards return hundreds of postings a day and most are wrong on seniority, location or title. I wanted one email a day with the handful worth applying to, scored against rules I wrote down once.",
   body: [

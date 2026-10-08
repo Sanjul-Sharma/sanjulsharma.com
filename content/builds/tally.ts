@@ -7,6 +7,7 @@ export const tally: Entry = {
   status: "live",
   year: "2026",
   tagline: "Tracks every credit-card perk and credit before it resets",
+  running: "cron 15:00 UTC daily",
   problem:
     "Premium cards bury hundreds of dollars a year in credits that reset monthly, quarterly, annually or on the card anniversary. Nobody remembers which ones they have used. Tally does.",
   body: [

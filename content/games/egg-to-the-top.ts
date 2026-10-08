@@ -7,6 +7,7 @@ export const eggToTheTop: Entry = {
   status: "live",
   year: "2026",
   tagline: "You're an egg. The baskets are swinging. Get to the top.",
+  running: "live on Roblox, 16-player servers",
   problem:
     "A remake of an arcade climber I played as a kid: an egg rides a swaying basket, you time one hop to the next basket, and a miss sends you a long way back down. One button, no excuses.",
   body: [

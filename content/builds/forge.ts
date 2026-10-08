@@ -7,6 +7,7 @@ export const forge: Entry = {
   status: "live",
   year: "2026",
   tagline: "An AI workout coach that writes your week and then tracks it",
+  running: "PWA on Vercel, daily use",
   problem:
     "Every workout app either hands you a generic template or charges for a coach. I wanted a plan built from my own body metrics, my goal, and the equipment actually in front of me, and I wanted friends to use it without an API key.",
   body: [

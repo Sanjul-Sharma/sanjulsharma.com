@@ -7,6 +7,7 @@ export const gatefall: Entry = {
   status: "in-dev",
   year: "2026",
   tagline: "Fight, fill the bag, run it back through the gate before night seals it",
+  running: "milestone 3 of 4",
   problem:
     "Most Roblox dungeon games bank your loot the moment it drops. Gatefall makes you carry it home. Night seals the gate every cycle, drops double, and anything still in your bag is at risk.",
   body: [

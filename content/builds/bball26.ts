@@ -7,6 +7,7 @@ export const bball26: Entry = {
   status: "live",
   year: "2024 – 2026",
   tagline: "A Discord bot that runs a 30-team dynasty basketball league end to end",
+  running: "24/7 on Railway, v37.119",
   problem:
     "I commission a 30-team dynasty fantasy basketball league with contracts, a salary cap, restricted free agency and a rookie draft. Running that by hand meant spreadsheets, arguments and late nights. Now the bot runs it.",
   body: [

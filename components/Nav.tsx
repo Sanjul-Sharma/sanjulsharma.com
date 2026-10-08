@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { navLinks, person } from "@/content/site";
 
@@ -22,21 +22,26 @@ function MoonIcon() {
   );
 }
 
+function readTheme(): Theme {
+  return (document.documentElement.getAttribute("data-theme") as Theme) || "light";
+}
+function subscribeTheme(cb: () => void) {
+  const mo = new MutationObserver(cb);
+  mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  return () => mo.disconnect();
+}
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<Theme>("dark");
+  // Theme lives on <html data-theme>; the head script sets it before paint.
+  const theme = useSyncExternalStore(subscribeTheme, readTheme, () => "light" as Theme);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const t = (document.documentElement.getAttribute("data-theme") as Theme) || "dark";
-    setTheme(t);
   }, []);
 
   const toggleTheme = () => {
@@ -47,7 +52,6 @@ export default function Nav() {
     } catch {
       /* ignore */
     }
-    setTheme(next);
   };
 
   const themeButton = (extra = "") => (
@@ -72,7 +76,7 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="text-base font-semibold tracking-tight text-foreground"
+          className="font-display text-base font-bold tracking-tight text-foreground"
         >
           {person.name}
         </Link>
@@ -85,7 +89,7 @@ export default function Nav() {
                 href={person.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted transition-colors hover:text-foreground"
+                className="mono text-xs uppercase tracking-wider text-muted transition-colors hover:text-foreground"
               >
                 Resume
               </a>
@@ -94,7 +98,7 @@ export default function Nav() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-sm text-muted transition-colors hover:text-foreground"
+                  className="mono text-xs uppercase tracking-wider text-muted transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </a>

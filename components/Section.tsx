@@ -46,7 +46,7 @@ export default function Section({
       <div ref={ref} className="reveal">
         <div className="mb-10">
           {eyebrow && <p className="eyebrow mb-2">{eyebrow}</p>}
-          <h2 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          <h2 className="font-display text-2xl font-bold tracking-[-0.02em] text-foreground sm:text-3xl">
             {title}
           </h2>
         </div>

@@ -7,6 +7,7 @@ export const nffl: Entry = {
   status: "live",
   year: "2026",
   tagline: "A Chrome side panel that watches your Sleeper draft and ranks the board for your roster",
+  running: "side panel, every draft",
   problem:
     "Draft rankings are generic. They do not know your league's scoring, your keeper rules, or that superflex changes what a quarterback is worth. I fitted a value model to six seasons of my league's history and put it next to the draft board.",
   body: [

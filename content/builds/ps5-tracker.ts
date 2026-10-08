@@ -7,6 +7,7 @@ export const ps5Tracker: Entry = {
   status: "live",
   year: "2026",
   tagline: "Watches retailers for a console and pings Discord when the price is right",
+  running: "worker on Railway",
   problem:
     "Stock alert services are fast and wrong. They report a bot challenge as out of stock and go quiet when a retailer changes its page. I wanted one that never lies about what it saw.",
   body: [

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import EntryDetail from "@/components/EntryDetail";
+import SplitzShell from "@/components/SplitzShell";
 import { games, findGame } from "@/content/entries";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -26,12 +27,12 @@ export default async function GamePage({ params }: Params) {
   const entry = findGame(slug);
   if (!entry) notFound();
   return (
-    <>
+    <SplitzShell>
       <Nav />
       <main className="flex-1">
         <EntryDetail entry={entry} backHref="/games" backLabel="All games" />
       </main>
       <Footer />
-    </>
+    </SplitzShell>
   );
 }

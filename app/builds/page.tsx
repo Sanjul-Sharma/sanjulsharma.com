@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import Section from "@/components/Section";
-import EntryCard from "@/components/EntryCard";
+import Ledger from "@/components/Ledger";
 import { builds } from "@/content/entries";
 
 export const metadata: Metadata = {
@@ -15,23 +14,18 @@ export default function BuildsPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1 pt-16">
-        <Section
-          id="builds"
-          title="Builds"
-          eyebrow="Apps, bots, tools and pipelines"
-        >
-          <p className="-mt-6 mb-10 max-w-2xl text-base leading-relaxed text-muted">
-            Things I built because I wanted them to exist. Most run every day
-            for me or a small group of people. Each page covers why it exists,
-            what it does and how it is put together.
-          </p>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {builds.map((entry) => (
-              <EntryCard key={entry.slug} entry={entry} basePath="/builds" />
-            ))}
-          </div>
-        </Section>
+      <main className="mx-auto w-full max-w-4xl flex-1 px-6 pb-24 pt-32 sm:pt-40">
+        <p className="eyebrow">Builds</p>
+        <h1 className="font-display mt-4 max-w-2xl text-4xl font-bold leading-[1.04] tracking-[-0.025em] text-foreground sm:text-5xl">
+          Apps, bots, tools and pipelines. Most of them run every day.
+        </h1>
+        <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
+          Built because I wanted them to exist. Each page covers why it exists,
+          what it does and how it is put together.
+        </p>
+        <div className="mt-12">
+          <Ledger entries={builds} heading="Build" />
+        </div>
       </main>
       <Footer />
     </>

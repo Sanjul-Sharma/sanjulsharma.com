@@ -74,15 +74,6 @@ export const person = {
 // ---------------------------------------------------------------------------
 //  NAV
 // ---------------------------------------------------------------------------
-// Small rotating status shown in the hero ("Currently — …"). Edit freely.
-export const currently: string[] = [
-  "shipping platforms",
-  "shooting film",
-  "automating chaos",
-  "watching the NBA",
-  "writing roadmaps",
-];
-
 export const navLinks: NavLink[] = [
   { label: "Work", href: "/#work" },
   { label: "Builds", href: "/builds" },

@@ -16,6 +16,8 @@ export type Entry = {
   year: string;
   /** One line on the card. */
   tagline: string;
+  /** Heartbeat for the ledger: cadence, version, host. Short. */
+  running?: string;
   /** Why it exists. Shown first on the detail page. */
   problem: string;
   /** Paragraphs for the detail page. */

@@ -7,7 +7,7 @@ export default function Experience() {
       <ol className="relative space-y-10 border-l border-border pl-6 sm:pl-8">
         {experience.map((job, i) => (
           <li key={i} className="relative">
-            <span className="absolute -left-[calc(1.5rem+5px)] top-1.5 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-accent-soft sm:-left-[calc(2rem+5px)]" />
+            <span className="absolute -left-[calc(1.5rem+5px)] top-1.5 h-2 w-2 bg-foreground sm:-left-[calc(2rem+5px)]" />
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <h3 className="text-lg font-semibold text-foreground">
                 {job.role}{" "}
@@ -41,7 +41,7 @@ export default function Experience() {
                   key={j}
                   className="flex gap-2.5 text-sm leading-relaxed text-muted"
                 >
-                  <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-accent" />
+                  <span className="mt-2.5 h-px w-3 flex-shrink-0 bg-muted-2" />
                   <span>{h}</span>
                 </li>
               ))}
